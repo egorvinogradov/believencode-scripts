@@ -8,15 +8,22 @@
     frameborder="0"></iframe>
 </div>
 
-<link rel="stylesheet" href="https://belivencode.surge.sh/webinar.css"/>
+<link rel="stylesheet" href="https://believencode.surge.sh/webinar.css"/>
 <script src="https://www.youtube.com/iframe_api"></script>
-<script src="https://belivencode.surge.sh/webinar.js"></script>
+<script src="https://believencode.surge.sh/webinar.js"></script>
 
 */
 
 
 window.BC = window.BC || {};
+window.BC.client = getClientData();
 window.BC.youtubeAPILoaded = false;
+
+
+if (window.BC.client.lead_id) {
+  changeAmoStatus(window.BC.client.lead_id, 'opened_webinar');
+}
+
 
 
 // onYouTubeIframeAPIReady() is supposed to be fired by Youtube JS API
@@ -63,34 +70,32 @@ setTimeout(() => {
 function onWebinarReady(){
   console.log('Webinar ready', window.BC);
   window.BC.webinarDuration = BC.webinar.getDuration();
-
-  const client = getClientData();
-
-  if (client.lead_id && client.email) {
-    window.BC.client = client;
-    enableWebinarTracker(client.lead_id, client.email);
-  }
+  enableWebinarTracker();
 }
 
 
-function enableWebinarTracker(lead_id, email){
+function enableWebinarTracker(){
   console.log('Enable webinar tracker', window.BC);
+  const lead_id = window.BC.client.lead_id;
 
   window.BC.webinarTracker = setInterval(() => {
-    trackWebinar(() => {
+    trackWebinarCompletion(() => {
       clearInterval(window.BC.webinarTracker);
-      changeAmoStatus(lead_id, email);
-      showOffer(lead_id, email);
+      showOffer(lead_id);
+
+      if (lead_id) {
+        changeAmoStatus(lead_id, 'watched_webinar');
+      }
     });
   }, 1000);
 }
 
 
-function trackWebinar(callback){
+function trackWebinarCompletion(callback){
   const time = window.BC.webinar.getCurrentTime();
   const percentage = time / window.BC.webinarDuration;
 
-  console.log(`Webinar completion: ${Math.floor(percentage * 100)}%`);
+  console.log('Webinar completion: ' + Math.floor(percentage * 100) + '%');
 
   if (percentage > 0.95) {
     callback(time);
@@ -98,13 +103,20 @@ function trackWebinar(callback){
 }
 
 
-function showOffer(lead_id, email){
-  alert(`SHOW OFFER - lead_id: ${lead_id}, email: ${email}`);
+function showOffer(lead_id){
+  alert(`SHOW OFFER - lead_id: ${lead_id}`);
 }
 
 
-function changeAmoStatus(lead_id, email){
-  alert(`CHANGE AMO STATUS - lead_id: ${lead_id}, email: ${email}`);
+function changeAmoStatus(lead_id, status){
+  const webhookUrl = 'https://hook.eu1.make.com/xqdq4hhnhdca8ds1ranjgpgyxg9j68ey';
+  const paramString = '?lead_id=' + lead_id + '&to_status=' + status;
+
+  console.log('Amo status: triggering webhook: ' + paramString);
+
+  return fetch(webhookUrl + paramString).then(() => {
+    console.log('Amo status: succesfully triggered webhook');
+  });
 }
 
 
@@ -124,15 +136,12 @@ function parseGetParams(){
 function getClientData(){
   let params = parseGetParams();
   let lead_id = params.lead_id || localStorage.getItem('lead_id');
-  let email = params.email || localStorage.getItem('email');
 
-  if (lead_id && email) {
+  if (lead_id) {
     localStorage.setItem('lead_id', lead_id);
-    localStorage.setItem('email', email);
   }
 
   return {
     lead_id: lead_id,
-    email: email
   };
 }
