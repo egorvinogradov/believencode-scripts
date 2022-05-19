@@ -31,8 +31,8 @@ waitUntilWebinarIsReady(BC.params.course_type, (webinar) => {
 
 // Youtube JS API 'onReady' event is unreliable
 // therefore using intervals to readiness checking
-function waitUntilWebinarIsReady(course_type, callback){
-  renderVideo(course_type);
+function waitUntilWebinarIsReady(courseType, callback){
+  renderVideo(courseType);
 
   let isYoutubeAPIReady = false;
   let isVideoReady = false;
@@ -56,36 +56,31 @@ function waitUntilWebinarIsReady(course_type, callback){
 }
 
 
-function getYoutubeVideoId(course_type){
+function getYoutubeVideoId(courseType){
   // noinspection NonAsciiCharacters,JSNonASCIINames
   const ids = {
     'Фронтенд': '1bFieQsV5TM',
     'UI/UX-дизайн': '1bFieQsV5TM',
     'Графический дизайн': '1bFieQsV5TM',
   };
-  return ids[course_type || 'Фронтенд'];
+  return ids[courseType || 'Фронтенд'];
 }
 
 
-function getWebinarTitle(course_type){
+function getWebinarTitle(courseType){
   // noinspection NonAsciiCharacters,JSNonASCIINames
   const titles = {
     'Фронтенд': 'Вебинар курса по фронтенд-разработке (JavaScript/ReactJS)',
     'UI/UX-дизайн': 'Вебинар курса по UI/UX-дизайну в Figma',
     'Графический дизайн': 'Вебинар курса по графическому дизайну в Photoshop',
   };
-  return titles[course_type || 'Фронтенд'];
+  return titles[courseType || 'Фронтенд'];
 }
 
 
-function setContactFormCourse(course_type) {
-  document.querySelector('.uc-contact-form-full select[name=course]').value = course_type;
-}
-
-
-function renderVideo(course_type){
-  const videoId = getYoutubeVideoId(course_type);
-  const title = getWebinarTitle(course_type);
+function renderVideo(courseType){
+  const videoId = getYoutubeVideoId(courseType);
+  const title = getWebinarTitle(courseType);
   const container = document.querySelector('.bc-webinar');
 
   container.innerHTML = '<h1 class="bc-webinar-header t-section__title t-title t-title_xs">' + title + '</h1>'
@@ -99,15 +94,15 @@ function renderVideo(course_type){
 
 function enableWebinarTracker(){
   console.log('Enable webinar tracker', BC);
-  const lead_id = BC.params.lead_id;
+  const leadId = BC.params.lead_id;
   const interval = setInterval(() => {
     trackWebinarCompletion(() => {
       clearInterval(interval);
 
-      if (lead_id) {
-        changeAmoStatus(lead_id, 'watched_webinar');
+      if (leadId) {
+        changeAmoStatus(leadId, 'watched_webinar');
       }
-      showOffer(lead_id);
+      showOffer(leadId);
     });
   }, 1000);
 }
@@ -125,7 +120,7 @@ function trackWebinarCompletion(callback){
 }
 
 
-function showOffer(lead_id){
+function showOffer(leadId){
   // TODO: design message
-  alert(`SHOW OFFER - lead_id: ${lead_id}`);
+  alert(`SHOW OFFER - lead: ${leadId}`);
 }

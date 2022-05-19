@@ -1,5 +1,5 @@
 :root {
-  --bc-video-width: 70vw;
+  --bc-payment-width: 70vw;
 }
 
 .bc-webinar {
@@ -7,20 +7,20 @@
 }
 
 .bc-webinar-header {
-  max-width: var(--bc-video-width);
+  max-width: var(--bc-payment-width);
   margin: 0 auto 2vw auto;
 }
 
 #bc-player {
-  width: var(--bc-video-width);
-  height: calc(var(--bc-video-width) * 0.56);
+  width: var(--bc-payment-width);
+  height: calc(var(--bc-payment-width) * 0.56);
   display: block;
   margin: 0 auto;
 }
 
 @media (max-width: 768px) {
   :root {
-    --bc-video-width: 92vw;
+    --bc-payment-width: 92vw;
   }
   .bc-webinar {
     padding-top: 20px;

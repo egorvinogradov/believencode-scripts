@@ -1,6 +1,6 @@
-function changeAmoStatus(lead_id, status){
+function changeAmoStatus(leadId, status){
   const webHookUrl = 'https://hook.eu1.make.com/xqdq4hhnhdca8ds1ranjgpgyxg9j68ey';
-  const paramString = '?lead_id=' + lead_id + '&to_status=' + status;
+  const paramString = '?lead_id=' + leadId + '&to_status=' + status;
 
   console.log('Amo status: triggering webhook: ' + paramString);
 
@@ -36,4 +36,12 @@ function getPageParams(){
   });
 
   return params;
+}
+
+
+function setContactFormCourse(courseType) {
+  const container = document.querySelector('.uc-contact-form-full select[name=course]');
+  if (container) {
+    container.value = courseType;
+  }
 }

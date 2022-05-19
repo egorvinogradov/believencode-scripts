@@ -41,11 +41,11 @@ function getPaymentLink(courseType) {
 function renderMessage(courseType) {
   const title = getCourseTitle(courseType);
   const paymentLink = getPaymentLink(courseType);
-  const container = document.querySelector('.bc-webinar');
+  const container = document.querySelector('.bc-payment');
 
-  container.innerHTML = '<h1>' + title + '</h1>'
-    + '<div>9990 сомов</div>'
-    + '<a href="' + paymentLink + '">Перейти к оплате</a>'
+  container.innerHTML = '<h1 class="bc-payment-header t-section__title t-title t-title_xs">' + title + '</h1>'
+    + '<div class="bc-payment-price t-title">9990 сомов</div>'
+    + '<a class="bc-payment-button t-btn" href="' + paymentLink + '">Перейти к оплате</a>'
 }
 
 // TODO: paybox callback message
