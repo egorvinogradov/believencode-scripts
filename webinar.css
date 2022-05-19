@@ -1,0 +1,11 @@
+.bc-webinar {
+  padding-top: 150px;
+}
+
+#bc-player {
+  --video-width: 70vw;
+  margin: 0 auto;
+  width: var(--video-width);
+  height: calc(var(--video-width) * 0.56);
+  display: block;
+}
