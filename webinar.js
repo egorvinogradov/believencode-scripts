@@ -10,7 +10,7 @@
 */
 
 
-const BC = window.BC || {};
+window.BC = window.BC || {};
 BC.params = getPageParams();
 BC.youtubeAPILoaded = false;
 

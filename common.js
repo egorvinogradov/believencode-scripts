@@ -1,3 +1,23 @@
+window.BC = window.BC || {};
+
+
+$(function () {
+  fixCourseSectionLinks();
+});
+
+
+function fixCourseSectionLinks() {
+  $('.t608__col').each((i, col) => {
+    const url = $('.t608__btn', col).attr('href');
+    $('.t608__bgimg, .t608__title, .t608__subtitle, .t608__descr', col)
+      .css({ cursor: 'pointer' })
+      .on('click', () => {
+        location.pathname = url;
+      });
+  });
+}
+
+
 function changeAmoStatus(leadId, status){
   const webHookUrl = 'https://hook.eu1.make.com/xqdq4hhnhdca8ds1ranjgpgyxg9j68ey';
   const paramString = '?lead_id=' + leadId + '&to_status=' + status;
@@ -24,10 +44,16 @@ function parseGetParams(){
 
 
 /**
- * @return {{ lead_id: string, course_type: string }}
+ * @return {{ lead_id: string, course_type: string, pg_payment_id: string }}
  */
 function getPageParams(){
-  const keys = ['lead_id', 'course_type'];
+  const keys = [
+    'lead_id',
+    'course_type',
+    'pg_payment_id',
+    'pg_salt',
+    'pg_sig',
+  ];
   const getParams = parseGetParams();
   const params = {};
 

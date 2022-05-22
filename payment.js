@@ -9,11 +9,15 @@
 */
 
 
-const BC = window.BC || {};
+window.BC = window.BC || {};
 BC.params = getPageParams();
 
 
 renderMessage(BC.params.course_type);
+
+if (BC.params.pg_payment_id) {
+  alert('УСПЕШНАЯ ОПЛАТА: ' + BC.params.pg_payment_id);
+}
 
 
 function getCourseTitle(courseType){
@@ -28,13 +32,13 @@ function getCourseTitle(courseType){
 
 
 function getPaymentLink(courseType) {
-  const paths = {
-    'Фронтенд': '1',
+  const urls = {
+    'Фронтенд': 'https://api.paybox.money/payment.php?pg_merchant_id=544219&pg_amount=9990&pg_currency=KGS&pg_description=%D0%9A%D1%83%D1%80%D1%81+%D0%BF%D0%BE+%D1%84%D1%80%D0%BE%D0%BD%D1%82%D0%B5%D0%BD%D0%B4-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B5+%28JavaScript%2FReactJS%29&pg_salt=70pIEodhftL0zq7I&pg_language=ru&pg_sig=314231f1f12a3d1adedeee97e20e216c',
     'UI/UX-дизайн': '2',
     'Графический дизайн': '3',
   };
-  const path = paths[courseType || 'Фронтенд'];
-  return 'https://paybox.money/' + path;
+  const path = urls[courseType || 'Фронтенд'];
+  return path;
 }
 
 
