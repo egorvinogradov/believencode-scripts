@@ -71,3 +71,22 @@ function setContactFormCourse(courseType) {
     container.value = courseType;
   }
 }
+
+
+/**
+ * @param rawCourseType {string}
+ * @param options {{ frontend: *, ui: *, graphic: * }}
+ */
+function selectByCourse(rawCourseType, options) {
+  const defaultType = 'frontend';
+
+  // noinspection NonAsciiCharacters,JSNonASCIINames
+  const typeDict = {
+    'фронтенд': 'frontend',
+    'ui_ux_дизайн': 'ui',
+    'графический_дизайн': 'graphic',
+  };
+  const normalizedValue = (rawCourseType || '').toLowerCase().replace(/[^a-zа-я0-9]/ig, '_');
+  const type = typeDict[normalizedValue] || defaultType;
+  return options[type];
+}

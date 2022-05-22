@@ -1,16 +1,14 @@
 :root {
   --bc-payment-width: 50vw;
+  --bc-payment-padding: 150px;
 }
 
 .bc-payment {
-  padding-top: 150px;
+  text-align: center;
+  padding-top: var(--bc-payment-padding);
   max-width: var(--bc-payment-width);
   margin: 0 auto;
-}
-
-.bc-payment-price {
-  font-size: 2em;
-  margin: 0.6em 0 0.7em 0;
+  min-height: calc(100vh - var(--bc-payment-padding));
 }
 
 .bc-payment-button {
@@ -20,17 +18,27 @@
   height: auto;
   padding: 20px 50px 22px 50px;
   font-size: 19px;
+  margin-top: 30px;
+}
+
+.bc-payment-warning {
+  padding: 30px 0 60px 0;
+  color: red;
+  font-size: 1.1em;
+}
+
+.bc-payment-info {
+  padding-top: 30px;
+  font-size: 1.1em;
+}
+
+.bc-payment-info:last-child {
+  padding: 5px 0 60px 0;
 }
 
 @media (max-width: 768px) {
   :root {
     --bc-payment-width: 92vw;
-  }
-  .bc-payment {
-    padding-top: 20px;
-  }
-  .bc-payment-price {
-    font-size: 1.5em;
-    margin: 1em 0 1.1em 0;
+    --bc-payment-padding: 20px;
   }
 }
