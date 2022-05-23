@@ -18,6 +18,11 @@
   margin: 0 auto;
 }
 
+.uc-webinar-trigger {
+  pointer-events: none;
+  visibility: hidden;
+}
+
 @media (max-width: 768px) {
   :root {
     --bc-payment-width: 92vw;

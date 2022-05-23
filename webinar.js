@@ -91,14 +91,15 @@ function renderVideo(courseName){
 function enableWebinarTracker(){
   console.log('Enable webinar tracker', BC);
   const leadId = BC.params.lead_id;
+  const courseName = BC.params.course_name;
   const interval = setInterval(() => {
     trackWebinarCompletion(() => {
       clearInterval(interval);
 
-      if (leadId) {
+      if (leadId && courseName) {
         changeAmoStatus(leadId, 'watched_webinar');
+        showOffer(leadId, courseName);
       }
-      showOffer(leadId);
     });
   }, 1000);
 }
@@ -116,7 +117,28 @@ function trackWebinarCompletion(callback){
 }
 
 
-function showOffer(leadId){
-  // TODO: design message
-  alert(`SHOW OFFER - lead: ${leadId}`);
+function generatePaymentLink(leadId, courseName) {
+  return '/payment?course_name=' + courseName + '&lead_id=' + leadId;
+}
+
+
+function showOffer(leadId, courseName){
+  const popupText = document.querySelector('.t756__descr');
+  const paymentLink = document.querySelector('.t756__btn-wrapper a');
+  const triggerButton = document.querySelector('.uc-webinar-trigger a');
+
+  const firstLine = selectByCourse(courseName, {
+    frontend: 'Разработка на JavaScript, ReactJS, HTML и CSS',
+    ui: 'UI/UX-дизайн в Figma',
+    graphic: 'Графический дизайн в Photoshop\n',
+  });
+
+  popupText.innerHTML = '<b>Онлайн видеокурс 3 в 1</b>'
+    + '<br>' + firstLine
+    + '<br>Деловой английский для работы за границей'
+    + '<br>Поиск и получение удаленной работы';
+
+  paymentLink.href = generatePaymentLink(leadId, courseName);
+
+  triggerButton.click();
 }
