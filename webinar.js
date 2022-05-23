@@ -125,7 +125,8 @@ function generatePaymentLink(leadId, courseName) {
 function showOffer(leadId, courseName){
   const popupText = document.querySelector('.t756__descr');
   const paymentLink = document.querySelector('.t756__btn-wrapper a');
-  const triggerButton = document.querySelector('.uc-webinar-trigger a');
+  const triggerBlock = document.querySelector('.uc-webinar-trigger');
+  const triggerButton = triggerBlock.querySelector('a');
 
   const firstLine = selectByCourse(courseName, {
     frontend: 'Разработка на JavaScript, ReactJS, HTML и CSS',
@@ -139,6 +140,6 @@ function showOffer(leadId, courseName){
     + '<br>Поиск и получение удаленной работы';
 
   paymentLink.href = generatePaymentLink(leadId, courseName);
-
+  triggerBlock.classList.add('bc-active');
   triggerButton.click();
 }

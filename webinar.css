@@ -23,6 +23,12 @@
   visibility: hidden;
 }
 
+.uc-webinar-trigger.bc-active {
+  pointer-events: inherit !important;
+  visibility: visible !important;
+  padding: 50px 0 70px 0;
+}
+
 @media (max-width: 768px) {
   :root {
     --bc-payment-width: 92vw;
