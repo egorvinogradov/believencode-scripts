@@ -17,37 +17,46 @@ window.addEventListener('DOMContentLoaded', () => {
 
   console.log('Initialize', BC);
 
+
   pageRouter({
-    '/public/products': initializeMainPage,
+    '/public/products': () => {
+      console.log('INITIALIZING MAIN PAGE...');
+      waitForElementToAppear('.app-toolbar', element => {
+        console.log('.product ready', element);
+        initializeMainPage();
+      });
+    },
     '/public/course': () => {
-      initializeInvitationPage(BC.params.email);
+      console.log('INITIALIZING INVITATION PAGE...');
+      waitForElementToAppear('.product', element => {
+        console.log('.app-toolbar ready', element);
+        initializeInvitationPage(BC.params.email);
+      });
     },
   });
 });
 
 
 function initializeInvitationPage(email) {
-  console.log('Initialize invitation page');
   const input = document.querySelector('.v-main__wrap input[type=email]');
+  console.log('Invitation input', input);
   fillOutVueInput(input, email);
 }
 
 
 function initializeMainPage() {
-  console.log('Initialize main page');
-
   try {
     const headerRegisterButtonText = getElementsByText('зарегистрироваться', '.v-toolbar__content')[0];
+    console.log('headerRegisterButtonText', headerRegisterButtonText);
     const headerRegisterButton = headerRegisterButtonText.parentNode;
-    console.log('headerRegisterButton', headerRegisterButton);
     headerRegisterButton.style.display = 'none';
   }
   catch (e) {}
 
   try {
     const headerLoginButtonText = getElementsByText('войти', '.v-toolbar__content')[0];
+    console.log('headerLoginButtonText', headerLoginButtonText);
     const headerLoginButton = headerLoginButtonText.parentNode;
-    console.log('headerLoginButton', headerLoginButton);
     headerLoginButton.click();
   }
   catch (e) {}
@@ -112,4 +121,15 @@ function getElementsByText(text, parentSelector) {
     list.push(next.parentElement);
   }
   return list;
+}
+
+
+function waitForElementToAppear(selector, callback) {
+  const interval = setInterval(() => {
+    const element = document.querySelector(selector);
+    if (element) {
+      clearInterval(interval);
+      callback(element);
+    }
+  }, 100);
 }

@@ -11,6 +11,10 @@
 
 /* Main page */
 
+.app-toolbar .z-btn--zSecondary {
+  display: none;
+}
+
 .v-main .search {
   display: none;
 }
