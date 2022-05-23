@@ -1,6 +1,6 @@
 /*
 
-<script src="https://believencode.surge.sh/zenclass.js"></script>
+<link rel="stylesheet" href="https://believencode.surge.sh/zenclass.css"/>
 <script src="https://believencode.surge.sh/zenclass.js"></script>
 
  */
