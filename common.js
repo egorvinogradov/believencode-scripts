@@ -71,26 +71,26 @@ function getPageParams(){
 }
 
 
-function setContactFormCourse(courseType) {
+function setContactFormCourse(courseName) {
   const container = document.querySelector('.uc-contact-form-full select[name=course]');
   if (container) {
-    container.value = courseType;
+    container.value = courseName;
   }
 }
 
 
 /**
- * @param rawCourseType {string}
+ * @param rawCourseName {string}
  * @param options {{ frontend: *, ui: *, graphic: * }}
  */
-function selectByCourse(rawCourseType, options) {
+function selectByCourse(rawCourseName, options) {
   // noinspection NonAsciiCharacters,JSNonASCIINames
   const typeDict = {
     'фронтенд': 'frontend',
     'ui_ux_дизайн': 'ui',
     'графический_дизайн': 'graphic',
   };
-  const normalizedValue = (rawCourseType || '').toLowerCase().replace(/[^a-zа-я0-9]/ig, '_');
+  const normalizedValue = (rawCourseName || '').toLowerCase().replace(/[^a-zа-я0-9]/ig, '_');
   const type = typeDict[normalizedValue];
   return options[type];
 }

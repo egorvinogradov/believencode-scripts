@@ -31,8 +31,8 @@ waitUntilWebinarIsReady(BC.params.course_name, (webinar) => {
 
 // Youtube JS API 'onReady' event is unreliable
 // therefore using intervals to readiness checking
-function waitUntilWebinarIsReady(courseType, callback){
-  renderVideo(courseType);
+function waitUntilWebinarIsReady(courseName, callback){
+  renderVideo(courseName);
 
   let isYoutubeAPIReady = false;
   let isVideoReady = false;
@@ -56,8 +56,8 @@ function waitUntilWebinarIsReady(courseType, callback){
 }
 
 
-function getYoutubeVideoId(courseType){
-  return selectByCourse(courseType, {
+function getYoutubeVideoId(courseName){
+  return selectByCourse(courseName, {
     frontend: '1bFieQsV5TM',
     ui: '1bFieQsV5TM',
     graphic: '1bFieQsV5TM',
@@ -65,8 +65,8 @@ function getYoutubeVideoId(courseType){
 }
 
 
-function getWebinarTitle(courseType){
-  return selectByCourse(courseType, {
+function getWebinarTitle(courseName){
+  return selectByCourse(courseName, {
     frontend: 'Вебинар курса по фронтенд-разработке (JavaScript/ReactJS)',
     ui: 'Вебинар курса по UI/UX-дизайну в Figma',
     graphic: 'Вебинар курса по графическому дизайну в Photoshop',
@@ -74,9 +74,9 @@ function getWebinarTitle(courseType){
 }
 
 
-function renderVideo(courseType){
-  const videoId = getYoutubeVideoId(courseType);
-  const title = getWebinarTitle(courseType);
+function renderVideo(courseName){
+  const videoId = getYoutubeVideoId(courseName);
+  const title = getWebinarTitle(courseName);
   const container = document.querySelector('.bc-webinar');
 
   container.innerHTML = '<h1 class="bc-webinar-header t-section__title t-title t-title_xs">' + title + '</h1>'
