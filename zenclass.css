@@ -1,0 +1,31 @@
+/* Invitation page */
+
+.product__price {
+  display: none;
+}
+
+.price-block .z-btn--disabled + .zPrimaryFaded--text {
+  padding-top: 15px;
+}
+
+
+/* Main page */
+
+.v-main .search {
+  display: none;
+}
+
+.v-footer.footer-platform.v-sheet {
+  display: none;
+}
+
+
+/* Auth panel */
+
+.auth-panel .zPrimary--text {
+  display: none;
+}
+
+.auth-panel .oauth-container {
+  display: none;
+}
