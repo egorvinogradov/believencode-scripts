@@ -17,7 +17,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
   console.log('Initialize', BC);
 
-
   pageRouter({
     '/public/products': () => {
       console.log('INITIALIZING MAIN PAGE...');
@@ -40,7 +39,9 @@ window.addEventListener('DOMContentLoaded', () => {
 function initializeInvitationPage(email) {
   const input = document.querySelector('.v-main__wrap input[type=email]');
   console.log('Invitation input', input);
-  fillOutVueInput(input, email);
+  if (email) {
+    fillOutVueInput(input, email);
+  }
 }
 
 

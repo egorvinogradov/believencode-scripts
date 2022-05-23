@@ -15,7 +15,7 @@ BC.params = getPageParams();
 BC.youtubeAPILoaded = false;
 
 
-if (BC.params.lead_id) {
+if (BC.params.lead_id && BC.params.course_name) {
   changeAmoStatus(BC.params.lead_id, 'opened_webinar');
 }
 
