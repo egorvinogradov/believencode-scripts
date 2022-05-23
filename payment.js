@@ -19,7 +19,7 @@ if (BC.params.pg_payment_id) {
   changeAmoStatus(BC.params.lead_id, 'paid');
 }
 else {
-  renderPayButton(BC.params.course_type);
+  renderPayButton(BC.params.course_name);
 }
 
 

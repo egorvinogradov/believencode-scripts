@@ -19,9 +19,9 @@ if (BC.params.lead_id) {
   changeAmoStatus(BC.params.lead_id, 'opened_webinar');
 }
 
-setContactFormCourse(BC.params.course_type);
+setContactFormCourse(BC.params.course_name);
 
-waitUntilWebinarIsReady(BC.params.course_type, (webinar) => {
+waitUntilWebinarIsReady(BC.params.course_name, (webinar) => {
   BC.webinar = webinar;
   BC.webinarDuration = BC.webinar.getDuration();
   console.log('Webinar ready');
@@ -57,24 +57,20 @@ function waitUntilWebinarIsReady(courseType, callback){
 
 
 function getYoutubeVideoId(courseType){
-  // noinspection NonAsciiCharacters,JSNonASCIINames
-  const ids = {
-    'Фронтенд': '1bFieQsV5TM',
-    'UI/UX-дизайн': '1bFieQsV5TM',
-    'Графический дизайн': '1bFieQsV5TM',
-  };
-  return ids[courseType || 'Фронтенд'];
+  return selectByCourse(courseType, {
+    frontend: '1bFieQsV5TM',
+    ui: '1bFieQsV5TM',
+    graphic: '1bFieQsV5TM',
+  });
 }
 
 
 function getWebinarTitle(courseType){
-  // noinspection NonAsciiCharacters,JSNonASCIINames
-  const titles = {
-    'Фронтенд': 'Вебинар курса по фронтенд-разработке (JavaScript/ReactJS)',
-    'UI/UX-дизайн': 'Вебинар курса по UI/UX-дизайну в Figma',
-    'Графический дизайн': 'Вебинар курса по графическому дизайну в Photoshop',
-  };
-  return titles[courseType || 'Фронтенд'];
+  return selectByCourse(courseType, {
+    frontend: 'Вебинар курса по фронтенд-разработке (JavaScript/ReactJS)',
+    ui: 'Вебинар курса по UI/UX-дизайну в Figma',
+    graphic: 'Вебинар курса по графическому дизайну в Photoshop',
+  });
 }
 
 

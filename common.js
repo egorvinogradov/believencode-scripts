@@ -44,12 +44,12 @@ function parseGetParams(){
 
 
 /**
- * @return {{ lead_id: string, course_type: string, pg_payment_id: string }}
+ * @return {{ lead_id: string, course_name: string, pg_payment_id: string }}
  */
 function getPageParams(){
   const keys = [
     'lead_id',
-    'course_type',
+    'course_name',
     'pg_payment_id',
     'pg_salt',
     'pg_sig',
@@ -58,9 +58,15 @@ function getPageParams(){
   const params = {};
 
   keys.forEach(key => {
-    params[key] = getParams[key] || localStorage.getItem(key);
+    params[key] = getParams[key];
   });
 
+  if (params.lead_id) {
+    localStorage.setItem('lead_id', params.lead_id);
+  }
+  else {
+    params.lead_id = localStorage.getItem('lead_id');
+  }
   return params;
 }
 
@@ -78,8 +84,6 @@ function setContactFormCourse(courseType) {
  * @param options {{ frontend: *, ui: *, graphic: * }}
  */
 function selectByCourse(rawCourseType, options) {
-  const defaultType = 'frontend';
-
   // noinspection NonAsciiCharacters,JSNonASCIINames
   const typeDict = {
     'фронтенд': 'frontend',
@@ -87,6 +91,6 @@ function selectByCourse(rawCourseType, options) {
     'графический_дизайн': 'graphic',
   };
   const normalizedValue = (rawCourseType || '').toLowerCase().replace(/[^a-zа-я0-9]/ig, '_');
-  const type = typeDict[normalizedValue] || defaultType;
+  const type = typeDict[normalizedValue];
   return options[type];
 }
