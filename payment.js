@@ -34,9 +34,9 @@ function getCourseTitle(courseName){
 
 function getPaymentLink(courseName) {
   return selectByCourse(courseName, {
-    frontend: 'https://api.paybox.money/payment.php?pg_merchant_id=544219&pg_amount=9990&pg_currency=KGS&pg_description=%D0%9A%D1%83%D1%80%D1%81+%D0%BF%D0%BE+%D1%84%D1%80%D0%BE%D0%BD%D1%82%D0%B5%D0%BD%D0%B4-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B5+%28JavaScript%2FReactJS%29&pg_salt=70pIEodhftL0zq7I&pg_language=ru&pg_sig=314231f1f12a3d1adedeee97e20e216c',
-    ui: 'https://api.paybox.money/payment.php?pg_merchant_id=544219&pg_amount=9990&pg_currency=KGS&pg_description=%D0%9A%D1%83%D1%80%D1%81+%D0%BF%D0%BE+UI%2FUX-%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%D1%83+%D0%B2+Figma&pg_salt=2o529l5EwIcCFlZc&pg_language=ru&pg_sig=f6aed5f89bbb32d25791f47cf8fd8476',
-    graphic: 'https://api.paybox.money/payment.php?pg_merchant_id=544219&pg_amount=9990&pg_currency=KGS&pg_description=%D0%9A%D1%83%D1%80%D1%81+%D0%BF%D0%BE+%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%BC%D1%83+%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%D1%83+%D0%B2+Photoshop&pg_salt=uXMkRJnymD8J0NxU&pg_language=ru&pg_sig=7e787a873a83a295c20d24bc46eb714d',
+    frontend: 'https://api.paybox.money/payment.php?pg_merchant_id=544891&pg_amount=9990&pg_currency=KGS&pg_description=Front-end+%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0&pg_salt=qqyeL7eUaPvfnxAL&pg_language=ru&pg_sig=b82b062204e684ee3d123e941b4a59af',
+    ui: 'https://api.paybox.money/payment.php?pg_merchant_id=544891&pg_amount=9990&pg_currency=KGS&pg_description=UI-Ux+%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD&pg_salt=A7zXDD4vwrE8qRaO&pg_language=ru&pg_sig=4ac74258d3ec34c0c4255371c30365ac',
+    graphic: 'https://api.paybox.money/payment.php?pg_merchant_id=544891&pg_amount=9990&pg_currency=KGS&pg_description=%D0%93%D1%80%D0%B0%D1%84%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9+%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD&pg_salt=fJQOfLEo7LiIyxSP&pg_language=ru&pg_sig=c37b55c3fd32622f491ffb3563624b20',
   });
 }
 
